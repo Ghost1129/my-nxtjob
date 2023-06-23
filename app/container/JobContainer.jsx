@@ -1,19 +1,21 @@
-"use client"
-import React from 'react'
-import * as Dialog from '@radix-ui/react-dialog';
-import { CheckIcon, ChevronDownIcon, Cross2Icon} from '@radix-ui/react-icons';
-import JobIcon from '../../public/assets/jobcontainer/joblogo.svg'
-import Image from 'next/image';
-import {BiBuildingHouse} from 'react-icons/bi'
-import {AiFillDollarCircle} from 'react-icons/ai'
-import {MdLocationOn} from 'react-icons/md'
-import * as Select from '@radix-ui/react-select';
-import ClipIcon from '../../public/assets/dndcard/clip.svg'
-import DocIcon from '../../public/assets/dndcard/doc.svg'
-import MessageIcon from '../../public/assets/dndcard/message.svg'
-import JobInner from './JobInner';
+"use client";
+import React from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { CheckIcon, ChevronDownIcon, Cross2Icon } from "@radix-ui/react-icons";
+import JobIcon from "../../public/assets/jobcontainer/joblogo.svg";
+import Image from "next/image";
+import { BiBuildingHouse } from "react-icons/bi";
+import { AiFillDollarCircle } from "react-icons/ai";
+import { MdLocationOn } from "react-icons/md";
+import * as Select from "@radix-ui/react-select";
+import ClipIcon from "../../public/assets/dndcard/clip.svg";
+import DocIcon from "../../public/assets/dndcard/doc.svg";
+import MessageIcon from "../../public/assets/dndcard/message.svg";
+import JobInner from "./JobInner";
+import { motion } from "framer-motion";
 
-const SelectItem =React.forwardRef(({ children, className, ...props }, forwardedRef) => {
+const SelectItem = React.forwardRef(
+  ({ children, className, ...props }, forwardedRef) => {
     return (
       <Select.Item
         className="relative flex items-center px-6 py-3 text-sm leading-none rounded-md cursor-default group hover:bg-secondary hover:text-black"
@@ -26,92 +28,114 @@ const SelectItem =React.forwardRef(({ children, className, ...props }, forwarded
         </Select.ItemIndicator>
       </Select.Item>
     );
-  });
+  }
+);
 
-    SelectItem.displayName = 'SelectItem';
+SelectItem.displayName = "SelectItem";
 
 const JobContainer = () => {
+  const vaiants = {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 },
+  };
   return (
-    <Dialog.Content className=' fixed top-1/2 left-1/2 flex pb-10 flex-col gap-5 -translate-x-1/2 -translate-y-1/2 outline-none w-[1200px] max-h-[760px] overflow-hidden rounded-md bg-white' >
-        <Dialog.Close>
-            <Cross2Icon className='absolute w-5 h-5 cursor-pointer top-6 right-6' />
-        </Dialog.Close>
-        <ContainerTop />
-        <div className=' border-y'>
-            <span className='flex my-5 mx-10 text-xs font-normal gap-[10px] text-[#9E9E9E]'>
-                <span className='flex items-center gap-[10px] px-[7px] py-2 rounded-sm bg-green-100'>
-                    <Image alt='ClipIcon' src={ClipIcon} />
-                    <span className='text-green-600'>Resume Name 75%</span>
-                </span>
-                <span className='flex items-center px-[7px] border gap-[10px] py-2 rounded-sm'>
-                    <Image alt='DocIcon' src={DocIcon} />
-                    <span>Cover Letter Name</span>
-                </span>
-                <span className='flex items-center px-[7px] border gap-[10px] py-2 rounded-sm'>
-                    <Image alt='MessageIcon' src={MessageIcon} />
-                    <span>Mock Interview</span>
-                </span>
-            </span>
-        </div>
-        <JobInner />
-        
+    <Dialog.Content className="fixed z-[20] top-1/2 left-1/2 flex pb-10 flex-col gap-5 -translate-x-1/2 -translate-y-1/2 outline-none w-[1200px] max-h-[760px] overflow-hidden rounded-md bg-white">
+      <Dialog.Close>
+        <Cross2Icon className="absolute w-5 h-5 cursor-pointer top-6 right-6" />
+      </Dialog.Close>
+      <ContainerTop />
+      <div className=" border-y">
+        <span className="flex my-5 mx-10 text-xs font-normal gap-[10px] text-[#9E9E9E]">
+          <motion.span
+            variants={vaiants}
+            initial="initial"
+            animate="animate"
+            className="flex items-center gap-[10px] px-[7px] py-2 rounded-sm bg-green-100"
+          >
+            <Image alt="ClipIcon" src={ClipIcon} />
+            <span className="text-green-600">Resume Name 75%</span>
+          </motion.span>
+          <motion.span
+            variants={vaiants}
+            initial="initial"
+            animate="animate"
+            className="flex items-center px-[7px] border gap-[10px] py-2 rounded-sm"
+          >
+            <Image alt="DocIcon" src={DocIcon} />
+            <span>Cover Letter Name</span>
+          </motion.span>
+          <motion.span
+            variants={vaiants}
+            initial="initial"
+            animate="animate"
+            className="flex items-center px-[7px] border gap-[10px] py-2 rounded-sm"
+          >
+            <Image alt="MessageIcon" src={MessageIcon} />
+            <span>Mock Interview</span>
+          </motion.span>
+        </span>
+      </div>
+      <JobInner />
     </Dialog.Content>
-  )
-}
+  );
+};
 
-export default JobContainer
-
-
-
+export default JobContainer;
 
 const ContainerTop = () => (
-    <div className='mx-[40px] mt-[40px] '>
-            <div className='flex gap-[10px] '>
-                <Image alt='jobicon' src={JobIcon} />
-                <div className='flex flex-col gap-[6px]'>
-                    <span className='text-lg font-semibold'>UI/UX Designer (Mobile Apps)</span>
-                    <span className='flex items-center min-w-max gap-[11.5px] text-[#5A5A5A] text-xs font-normal '>
-                        <span className='flex gap-[6.5px] items-center'>
-                            <BiBuildingHouse className='w-[14.6px] h-[12px]'/>
-                            <span>PIXSTER STUDIO</span>
-                        </span>
-                        <span className='flex gap-[6.5px] items-center'>
-                            <MdLocationOn className='w-[12px] h-[14px]'/>
-                            <span>Ahmedabad, Gujarat, India</span>
-                        </span>
-                        <span className='flex gap-[6.5px] items-center'>
-                            <AiFillDollarCircle className='w-[13px] h-[13px]'/>
-                            <span>Ahmedabad, Gujarat, India</span>
-                        </span>
-                        <span className='font-bold cursor-pointer text-primary'>View Job Details</span>
-                    </span>
-                    <span className='text-[#9E9E9E] text-xs font-normal'>
-                    Job added from linkedin.com on Tue May 30 2023
-                    </span>
-                </div>
-                <div className='flex gap-2 ml-auto'>
-                    <button className='py-1 text-base font-bold text-white bg-red-500 rounded-md h-fit px-11'>Delete</button>
-                    <Select.Root defaultValue='saved'>
-                        <Select.Trigger className='flex gap-2 px-8 py-1 text-sm h-fit font-normal text-[#212121] bg-white items-center border rounded-md'>
-                          <Select.Value className='text-sm font-normal ' />
-                          <Select.Icon className="">
-                            <ChevronDownIcon />
-                          </Select.Icon>
-                        </Select.Trigger>
-                        <Select.Portal>
-                        <Select.Content className='bg-white shadow-lg p-[10px] '>
-                         <Select.Viewport className=''>
-                          <SelectItem value="saved">Saved</SelectItem>
-                          <SelectItem value="applied">Applied</SelectItem>
-                          <SelectItem value="interviewing">Inerviewing</SelectItem>
-                          <SelectItem value="offer">Offer</SelectItem>
-                          <SelectItem value="rejected">Rejected</SelectItem>
-                         </Select.Viewport>
-                        </Select.Content>
-                        </Select.Portal>
-                      </Select.Root>
-                </div>
-            </div>
-
-        </div>
-)
+  <div className="mx-[40px] mt-[40px] ">
+    <div className="flex gap-[10px] ">
+      <Image alt="jobicon" src={JobIcon} />
+      <div className="flex flex-col gap-[6px]">
+        <span className="text-lg font-semibold">
+          UI/UX Designer (Mobile Apps)
+        </span>
+        <span className="flex items-center min-w-max gap-[11.5px] text-[#5A5A5A] text-xs font-normal ">
+          <span className="flex gap-[6.5px] items-center">
+            <BiBuildingHouse className="w-[14.6px] h-[12px]" />
+            <span>PIXSTER STUDIO</span>
+          </span>
+          <span className="flex gap-[6.5px] items-center">
+            <MdLocationOn className="w-[12px] h-[14px]" />
+            <span>Ahmedabad, Gujarat, India</span>
+          </span>
+          <span className="flex gap-[6.5px] items-center">
+            <AiFillDollarCircle className="w-[13px] h-[13px]" />
+            <span>Ahmedabad, Gujarat, India</span>
+          </span>
+          <span className="font-bold cursor-pointer text-primary">
+            View Job Details
+          </span>
+        </span>
+        <span className="text-[#9E9E9E] text-xs font-normal">
+          Job added from linkedin.com on Tue May 30 2023
+        </span>
+      </div>
+      <div className="flex gap-2 ml-auto">
+        <button className="py-1 text-base font-bold text-white bg-red-500 rounded-md h-fit px-11">
+          Delete
+        </button>
+        <Select.Root defaultValue="saved" className="">
+          <Select.Trigger className="flex gap-2 px-8 py-1 text-sm h-fit font-normal text-[#212121] bg-white items-center border rounded-md">
+            <Select.Value className="text-sm font-normal " />
+            <Select.Icon className="">
+              <ChevronDownIcon />
+            </Select.Icon>
+          </Select.Trigger>
+          <Select.Portal>
+            <Select.Content className="bg-white shadow-lg z-[22] p-[10px] ">
+              <Select.Viewport>
+                <SelectItem value="saved">Saved</SelectItem>
+                <SelectItem value="applied">Applied</SelectItem>
+                <SelectItem value="interviewing">Inerviewing</SelectItem>
+                <SelectItem value="offer">Offer</SelectItem>
+                <SelectItem value="rejected">Rejected</SelectItem>
+              </Select.Viewport>
+            </Select.Content>
+          </Select.Portal>
+        </Select.Root>
+      </div>
+    </div>
+  </div>
+);
