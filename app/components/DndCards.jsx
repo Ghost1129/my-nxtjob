@@ -7,11 +7,13 @@ import HouseIcon from '../../public/assets/dndcard/house.svg'
 import ClipIcon from '../../public/assets/dndcard/clip.svg'
 import Docicon from '../../public/assets/dndcard/doc.svg'
 import Messageicon from '../../public/assets/dndcard/message.svg'
+import MessageiconR from '../../public/assets/dndcard/messageR.svg'
 import { Draggable } from 'react-beautiful-dnd'
 import * as Dialog from '@radix-ui/react-dialog';
 import JobContainer from '../container/JobContainer'
 
 const DndCards = ({index,task}) => {
+    console.log(task)
   return (
     <Dialog.Root>
         <Dialog.Trigger>
@@ -26,8 +28,8 @@ const DndCards = ({index,task}) => {
                 </div>
                 <div className='flex gap-[10px] items-center'>
                     <Image alt='logo' src={Logo} width={24} height={24} />
-                    <div className='font-normal' >
-                        <span className='text-sm'>UI/UX Designer</span>
+                    <div className='flex flex-col font-normal' >
+                        <span className='inline-block text-sm text-start '>UI/UX Designer</span>
                         <span className='flex items-center gap-[10px]'>
                             <Image alt='house' src={HouseIcon} />
                             <span className='text-xs text-[#AFAFAF]'>Ajmera Infotech Inc.</span>
@@ -42,9 +44,17 @@ const DndCards = ({index,task}) => {
                     <span className='p-[10px] border border-dashed rounded-full border-[#9E9E9E]'>
                         <Image alt='doc' src={Docicon} />
                     </span>
-                    <span className='p-[10px] border border-dashed rounded-full border-[#9E9E9E]'>
+                    {
+                        task.messages ? 
+                        <span className='flex items-center gap-2 px-3 py-2 bg-red-100 rounded-md'>
+                        <Image alt='message' src={MessageiconR} />
+                        <span className='text-xs'>{task.messages}%</span>
+                        </span>:
+                        <span className='p-[10px] border border-dashed rounded-full border-[#9E9E9E]'>
                         <Image alt='message' src={Messageicon} />
                     </span>
+                    }
+                    
                 </div>
     
             </div>

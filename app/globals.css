@@ -14,3 +14,12 @@ body{
 }
 
 .ql-toolbar.ql-snow { border: none !important;}
+
+.ql-container.ql-snow {
+    border: none !important;
+    border-radius: 5px;
+    background-color: #ffffff;
+    
+    min-height: 200px;
+}
+
