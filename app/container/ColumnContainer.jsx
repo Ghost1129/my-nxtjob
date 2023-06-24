@@ -2,11 +2,17 @@
 import dynamic from "next/dynamic";
 import React from "react";
 const Col = dynamic(() => import("../container/Col"), { ssr: false });
-import initialData from "../data/dnd";
+
 import { DragDropContext } from "react-beautiful-dnd";
+import { useSelector } from "react-redux";
+
+import { updateWholeState, selectCards } from "../utils/slices/cardSlice";
+import { useDispatch } from "react-redux";
 
 const ColumnContainer = () => {
-  const [state, setState] = React.useState(initialData);
+  const dispatch = useDispatch();
+  const state = useSelector(selectCards);
+
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     if (!destination) {
@@ -36,7 +42,13 @@ const ColumnContainer = () => {
           [newColumn.id]: newColumn,
         },
       };
-      setState(newState);
+      dispatch(
+        updateWholeState({
+          tasks: newState.tasks,
+          columns: newState.columns,
+          columnOrder: newState.columnOrder,
+        })
+      );
       console.log(state);
       return;
     } else {
@@ -63,7 +75,13 @@ const ColumnContainer = () => {
           [newFinish.id]: newFinish,
         },
       };
-      setState(newState);
+      dispatch(
+        updateWholeState({
+          tasks: newState.tasks,
+          columns: newState.columns,
+          columnOrder: newState.columnOrder,
+        })
+      );
     }
   };
 
