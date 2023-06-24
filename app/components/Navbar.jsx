@@ -37,7 +37,7 @@ const Navbar = () => {
                     bounce: 0.25,
                     duration: 0.5,
                   }}
-                  className="absolute top-0 left-0 w-full h-full border tag bg-secondary border-primary"
+                  className="absolute top-0 left-0 w-full h-full border rounded-md tag bg-secondary border-primary"
                 ></motion.div>
               )}
             </NavigationMenu.Item>

@@ -9,10 +9,11 @@ import { AiFillDollarCircle } from "react-icons/ai";
 import { MdLocationOn } from "react-icons/md";
 import * as Select from "@radix-ui/react-select";
 import ClipIcon from "../../public/assets/dndcard/clip.svg";
-import DocIcon from "../../public/assets/dndcard/doc.svg";
-import MessageIcon from "../../public/assets/dndcard/message.svg";
+import DocIcon from "../../public/assets/dndcard/doc1.svg";
+import MessageIcon from "../../public/assets/dndcard/message1.svg";
 import JobInner from "./JobInner";
 import { motion } from "framer-motion";
+import { ResumePop } from "../components/PopOvers";
 
 const SelectItem = React.forwardRef(
   ({ children, className, ...props }, forwardedRef) => {
@@ -47,33 +48,39 @@ const JobContainer = () => {
       <ContainerTop />
       <div className=" border-y">
         <span className="flex my-5 mx-10 text-xs font-normal gap-[10px] text-[#9E9E9E]">
-          <motion.span
-            variants={vaiants}
-            initial="initial"
-            animate="animate"
-            className="flex items-center gap-[10px] px-[7px] py-2 rounded-sm bg-green-100"
-          >
-            <Image alt="ClipIcon" src={ClipIcon} />
-            <span className="text-green-600">Resume Name 75%</span>
-          </motion.span>
-          <motion.span
-            variants={vaiants}
-            initial="initial"
-            animate="animate"
-            className="flex items-center px-[7px] border gap-[10px] py-2 rounded-sm"
-          >
-            <Image alt="DocIcon" src={DocIcon} />
-            <span>Cover Letter Name</span>
-          </motion.span>
-          <motion.span
-            variants={vaiants}
-            initial="initial"
-            animate="animate"
-            className="flex items-center px-[7px] border gap-[10px] py-2 rounded-sm"
-          >
-            <Image alt="MessageIcon" src={MessageIcon} />
-            <span>Mock Interview</span>
-          </motion.span>
+          <ResumePop>
+            <motion.span
+              variants={vaiants}
+              initial="initial"
+              animate="animate"
+              className="flex items-center gap-[10px] px-[7px] py-2 rounded-sm bg-green-100"
+            >
+              <Image alt="ClipIcon" src={ClipIcon} />
+              <span className="text-green-600">Resume Name 75%</span>
+            </motion.span>
+          </ResumePop>
+          <ResumePop>
+            <motion.span
+              variants={vaiants}
+              initial="initial"
+              animate="animate"
+              className="flex items-center px-[7px] border gap-[10px] py-2 rounded-sm"
+            >
+              <Image alt="DocIcon" src={DocIcon} />
+              <span>Cover Letter Name</span>
+            </motion.span>
+          </ResumePop>
+          <ResumePop>
+            <motion.span
+              variants={vaiants}
+              initial="initial"
+              animate="animate"
+              className="flex items-center px-[7px] border gap-[10px] py-2 rounded-sm"
+            >
+              <Image alt="MessageIcon" src={MessageIcon} />
+              <span>Mock Interview</span>
+            </motion.span>
+          </ResumePop>
         </span>
       </div>
       <JobInner />

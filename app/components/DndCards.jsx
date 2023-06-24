@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import Menuicon from "../../public/assets/dndcard/menu.svg";
 import Logo from "../../public/assets/dndcard/logo.svg";
 import HouseIcon from "../../public/assets/dndcard/house.svg";
 import ClipIcon from "../../public/assets/dndcard/clip.svg";
@@ -11,9 +10,15 @@ import MessageiconR from "../../public/assets/dndcard/messageR.svg";
 import { Draggable } from "react-beautiful-dnd";
 import * as Dialog from "@radix-ui/react-dialog";
 import JobContainer from "../container/JobContainer";
-import * as Popover from "@radix-ui/react-popover";
-import { BsTrashFill } from "react-icons/bs";
 import { motion } from "framer-motion";
+
+import {
+  DeletePop,
+  ResumePop,
+  CoverPop,
+  MockPop,
+  Resume1Pop,
+} from "./PopOvers";
 
 const DndCards = ({ index, task }) => {
   return (
@@ -53,7 +58,9 @@ const DndCards = ({ index, task }) => {
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center mt-[10px] gap-[10px]">
+              </Dialog.Trigger>
+              <div className="flex items-center mt-[10px] gap-[10px]">
+                <ResumePop>
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
@@ -63,15 +70,19 @@ const DndCards = ({ index, task }) => {
                     <Image alt="clip" src={ClipIcon} />
                     <span className="text-xs">75%</span>
                   </motion.span>
+                </ResumePop>
+                <CoverPop>
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="p-[10px] border border-dashed rounded-full border-[#9E9E9E]"
+                    className=""
                   >
                     <Image alt="doc" src={Docicon} />
                   </motion.span>
-                  {task.messages ? (
+                </CoverPop>
+                {task.messages ? (
+                  <Resume1Pop>
                     <motion.span
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -81,18 +92,20 @@ const DndCards = ({ index, task }) => {
                       <Image alt="message" src={MessageiconR} />
                       <span className="text-xs">{task.messages}%</span>
                     </motion.span>
-                  ) : (
+                  </Resume1Pop>
+                ) : (
+                  <MockPop>
                     <motion.span
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.5 }}
-                      className="p-[10px] border border-dashed rounded-full border-[#9E9E9E]"
+                      className=""
                     >
                       <Image alt="message" src={Messageicon} />
                     </motion.span>
-                  )}
-                </div>
-              </Dialog.Trigger>
+                  </MockPop>
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -107,23 +120,3 @@ const DndCards = ({ index, task }) => {
 };
 
 export default DndCards;
-
-// Delete Popover
-const DeletePop = () => {
-  return (
-    <Popover.Root className="ml-auto justify-self-end">
-      <Popover.Trigger>
-        <Image src={Menuicon} className="cursor-pointer" alt="delete" />
-      </Popover.Trigger>
-      <Popover.Content
-        sideOffset={8}
-        className="w-[160px] px-5 py-3 shadow-md rounded-md cursor-pointer bg-white "
-      >
-        <div className="bg-white flex gap-[10px]">
-          <BsTrashFill className="text-[#F44336] text-[20px] cursor-pointer" />
-          <span className="text-[#212121] text-sm">Delete</span>
-        </div>
-      </Popover.Content>
-    </Popover.Root>
-  );
-};
