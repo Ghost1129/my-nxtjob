@@ -272,15 +272,19 @@ const CollapsibleContainer = ({ data, children }) => {
 
 const DeletePop = () => {
   return (
-    <Popover.Root>
+    <Popover.Root className="z-10">
       <Popover.Trigger>
-        <Image src={OptionLogo} className="cursor-pointer" alt="delete" />
+        <Image
+          src={OptionLogo}
+          className="relative cursor-pointer"
+          alt="delete"
+        />
       </Popover.Trigger>
       <Popover.Content
-        sideOffset={8}
+        side="top"
         className="w-[160px] px-5 py-3 shadow-md rounded-md cursor-pointer bg-white "
       >
-        <div className="bg-white flex gap-[10px]">
+        <div className="bg-white flex gap-[10px] ">
           <BsTrashFill className="text-[#F44336] text-[20px] cursor-pointer" />
           <span className="text-[#212121] text-sm">Delete</span>
         </div>
