@@ -2,10 +2,8 @@
 import dynamic from "next/dynamic";
 import React from "react";
 const Col = dynamic(() => import("../container/Col"), { ssr: false });
-
 import { DragDropContext } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
-
 import { updateWholeState, selectCards } from "../utils/slices/cardSlice";
 import { useDispatch } from "react-redux";
 

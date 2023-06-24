@@ -2,8 +2,20 @@ import React from "react";
 import { HiPencil } from "react-icons/hi";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
+import { deleteNote } from "@/app/utils/slices/notesSlice";
+import { useDispatch } from "react-redux";
 
 const NoteCard = ({ note }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(
+      deleteNote({
+        id: note.id,
+      })
+    );
+  };
+
   return (
     <div className="bg-white rounded-md shadow-sm">
       <textarea
@@ -20,7 +32,10 @@ const NoteCard = ({ note }) => {
         </span>
         <span className="flex gap-[10px]">
           <HiPencil className="w-6 h-6 ml-2 cursor-pointer text-primary" />
-          <BsTrash className="w-6 h-6 ml-2 text-red-500 cursor-pointer" />
+          <BsTrash
+            onClick={() => handleDelete()}
+            className="w-6 h-6 ml-2 text-red-500 cursor-pointer"
+          />
         </span>
       </div>
     </div>

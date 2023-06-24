@@ -2,10 +2,11 @@ import React from "react";
 import NoteCard from "../components/Job/NoteCard";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { selectNotes, addNote } from "../utils/slices/notesSlice";
 
 const NotesContainer = ({ addNote, setAddNote }) => {
-  const data = [];
-  const [notes, setNotes] = React.useState(data);
+  const notes = useSelector(selectNotes);
 
   return (
     <div className="w-full h-full ">
@@ -22,9 +23,7 @@ const NotesContainer = ({ addNote, setAddNote }) => {
             <span className="text-sm text-[#5A5A5A]">{`You can tap the "Create New Notes" Button to start taking notes!`}</span>
           </div>
         ) : null}
-        {addNote ? (
-          <AddNote setNotes={setNotes} setAddNote={setAddNote} />
-        ) : null}
+        {addNote ? <AddNote setAddNote={setAddNote} /> : null}
         {notes.map((note) => (
           <NoteCard key={note.id} note={note} />
         ))}
@@ -35,13 +34,18 @@ const NotesContainer = ({ addNote, setAddNote }) => {
 
 export default NotesContainer;
 
-const AddNote = ({ setNotes, setAddNote }) => {
+// AddNote component
+const AddNote = ({ setAddNote }) => {
+  const dispatch = useDispatch();
   const [note, setNote] = React.useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setNotes((prev) =>
-      [].concat({ id: prev.length + 1, title: note, time: "now" }, prev)
+    dispatch(
+      addNote({
+        title: note,
+        time: "now",
+      })
     );
     setNote("");
     setAddNote(false);

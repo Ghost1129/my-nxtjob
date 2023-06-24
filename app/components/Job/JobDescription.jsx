@@ -4,15 +4,19 @@ import { HiPencil } from "react-icons/hi";
 import QuillEditor from "../QuillEditor";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { selectEditor, updateEditor } from "../../utils/slices/editorSlice";
 
 const JobDescription = () => {
-  const [data, setData] = useState(
-    "<p><strong>Hello World</strong></p><p><br></p><p>Just Trying</p><p><br></p>"
-  );
+  const dispatch = useDispatch();
+  const data = useSelector(selectEditor);
+  // const [data, setData] = useState(
+  //   "<p><strong>Hello World</strong></p><p><br></p><p>Just Trying</p><p><br></p>"
+  // );
   const [editdata, setEditData] = useState(data);
   const [edit, setEdit] = useState(false);
   const handleSave = () => {
-    setData(editdata);
+    dispatch(updateEditor(editdata));
     setEdit(!edit);
   };
   const handleCancel = () => {
