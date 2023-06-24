@@ -1,34 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Run Locally
 
-## Getting Started
-
-First, run the development server:
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  git clone https://github.com/Ghost1129/my-nxtjob
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+  cd my-project
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install dependencies
 
-## Learn More
+```bash
+yarn install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Project Title
 
-## Deploy on Vercel
+NxtJobs Task Made Using:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+NextJs <br/>
+TailwindCSS <br/>
+Radix UI <br/>
+React-Quill <br/>
+Framer Motion
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Folder Structure
+
+### Root
+
+page -> Contains the Main Structure of the Project
+
+### Components
+
+    DndCards -> Component For the Draggable DndCards <br/>
+
+    FilterTab -> Contains The Search Section And the Create Job Button
+
+    Navbar-> Main Navbar of the application
+
+    PopOvers -> Contains All The Required PopOvers
+
+    QuillEditor -> Contains the Editor Section and its properties
+
+#### Job Folder
+
+    Company-> Contains The Company Section Tab Content
+
+    JobDescription-> Contains The Job Section With Quill Editor
+
+    NoteCard-> Component For the Different cards in note section
+
+    Notes-> Contains The Note Section Tab Content
+
+    Teams-> Contains The Team Section Tab Content
+
+    Timeline -> Component For the timeline in the right section
+
+### Container (Contains Sections)
+
+    Col -> Component for Different Columns in the DndCards
+
+    Column Container -> Container For All The Columns
+
+    JobContainer -> Main Dialog Content Container
+
+    JobInner -> Sub Section of the JobContainer
+
+    NotesContainer ->
+
+Data-> Contains Hard Coded cards Data
+
+<br/>
