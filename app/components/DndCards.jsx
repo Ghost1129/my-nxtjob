@@ -108,6 +108,7 @@ const DndCards = ({ index, task }) => {
 
 export default DndCards;
 
+// Delete Popover
 const DeletePop = () => {
   return (
     <Popover.Root className="ml-auto justify-self-end">

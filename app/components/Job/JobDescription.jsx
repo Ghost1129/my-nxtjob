@@ -3,6 +3,7 @@ import * as Tabs from "@radix-ui/react-tabs";
 import { HiPencil } from "react-icons/hi";
 import QuillEditor from "../QuillEditor";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 
 const JobDescription = () => {
   const [data, setData] = useState(
@@ -18,6 +19,10 @@ const JobDescription = () => {
     setEditData(data);
     setEdit(!edit);
   };
+  const variants = {
+    hidden: { opacity: 0, x: "50%" },
+    visible: { opacity: 1, x: 0 },
+  };
   return (
     <Tabs.Content
       value="1"
@@ -27,23 +32,29 @@ const JobDescription = () => {
         <span className="text-lg font-bold">Description</span>
         {edit ? (
           <div className="text-sm">
-            <button
+            <motion.button
+              initial="hidden"
+              animate="visible"
+              variants={variants}
               className="text-[#57A4F2] py-[6px] px-8 outline-none cursor-pointer border-none"
               onClick={handleCancel}
             >
               Cancel
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              initial="hidden"
+              animate="visible"
+              variants={variants}
               className="bg-[#57A4F2] py-[6px] ml-[10px] px-8 rounded-md cursor-pointer text-white"
               onClick={handleSave}
             >
               Save
-            </button>
+            </motion.button>
           </div>
         ) : (
           <HiPencil
             onClick={() => setEdit(!edit)}
-            className="w-5 h-5 ml-2 cursor-pointer text-primary"
+            className="w-5 h-5 ml-2 cursor-pointer hover:scale-110 text-primary"
           />
         )}
       </div>

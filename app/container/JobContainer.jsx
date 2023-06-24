@@ -113,11 +113,11 @@ const ContainerTop = () => (
         </span>
       </div>
       <div className="flex gap-2 ml-auto">
-        <button className="py-1 text-base font-bold text-white bg-red-500 rounded-md h-fit px-11">
+        <button className="py-1 text-base font-bold text-white transition-all bg-red-500 rounded-md hover:scale-105 h-fit px-11">
           Delete
         </button>
         <Select.Root defaultValue="saved" className="">
-          <Select.Trigger className="flex gap-2 px-8 py-1 text-sm h-fit font-normal text-[#212121] bg-white items-center border rounded-md">
+          <Select.Trigger className="flex gap-2 px-8 py-1 text-sm h-fit font-normal text-[#212121] hover:scale-105 bg-white items-center border rounded-md">
             <Select.Value className="text-sm font-normal " />
             <Select.Icon className="">
               <ChevronDownIcon />
@@ -125,13 +125,25 @@ const ContainerTop = () => (
           </Select.Trigger>
           <Select.Portal>
             <Select.Content className="bg-white shadow-lg z-[22] p-[10px] ">
-              <Select.Viewport>
-                <SelectItem value="saved">Saved</SelectItem>
-                <SelectItem value="applied">Applied</SelectItem>
-                <SelectItem value="interviewing">Inerviewing</SelectItem>
-                <SelectItem value="offer">Offer</SelectItem>
-                <SelectItem value="rejected">Rejected</SelectItem>
-              </Select.Viewport>
+              <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: "auto" }}
+                transition={{ duration: 0.5 }}
+              >
+                <Select.Viewport>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                  >
+                    <SelectItem value="saved">Saved</SelectItem>
+                    <SelectItem value="applied">Applied</SelectItem>
+                    <SelectItem value="interviewing">Inerviewing</SelectItem>
+                    <SelectItem value="offer">Offer</SelectItem>
+                    <SelectItem value="rejected">Rejected</SelectItem>
+                  </motion.div>
+                </Select.Viewport>
+              </motion.div>
             </Select.Content>
           </Select.Portal>
         </Select.Root>

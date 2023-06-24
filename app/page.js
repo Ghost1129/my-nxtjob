@@ -11,7 +11,9 @@ export default function Home() {
       <div className='flex h-full'>
       <Sidebars />
       <div className='w-full h-full px-5 overflow-x-hidden '>
+        {/* Search & Create Jobs */}
       <Filtertab />
+      {/* Contains Different DND Columns */}
       <ColumnContainer />
       </div>
       </div>
