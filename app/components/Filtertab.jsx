@@ -7,6 +7,8 @@ import * as Select from "@radix-ui/react-select";
 import Infologo from "../../public/assets/info.svg";
 import Image from "next/image";
 import initialData from "../data/dnd";
+import { useDispatch } from "react-redux";
+import { addCard } from "../utils/slices/cardSlice";
 
 const SelectItem = React.forwardRef(
   ({ children, className, ...props }, forwardedRef) => {
@@ -28,6 +30,7 @@ const SelectItem = React.forwardRef(
 SelectItem.displayName = "SelectItem";
 
 const DialobBox = () => {
+  const dispatch = useDispatch();
   const [data, setData] = React.useState(initialData);
   const [selected, setSelected] = React.useState("column-1");
 
@@ -45,15 +48,25 @@ const DialobBox = () => {
   });
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    dispatch(
+      addCard({
+        id: updated.id,
+        url: updated.url,
+        title: updated.title,
+        company: updated.company,
+        column: selected,
+      })
+    );
   };
 
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger>
-        <button className="text-base font-bold px-[18px] py-3 rounded-lg text-white bg-tertiary">
+        <div className="text-base font-bold px-[18px] py-3 rounded-lg text-white bg-tertiary">
           Create
-        </button>
+        </div>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-50" />
@@ -128,16 +141,16 @@ const DialobBox = () => {
               </Select.Content>
             </Select.Portal>
           </Select.Root>
-          <div className="flex items-center gap-[10px] my-[30px]">
-            <Dialog.Close asChild>
-              <button className="w-full p-4 text-base font-bold bg-white border rounded-md outline-none">
+          <div className="flex  items-center gap-[10px] my-[30px]">
+            <Dialog.Close>
+              <button className="min-w-[206px] p-4 text-base font-bold bg-white border rounded-md outline-none">
                 Cancel
               </button>
             </Dialog.Close>
-            <Dialog.Close asChild>
+            <Dialog.Close>
               <button
                 onClick={(e) => onSubmit(e)}
-                className="w-full p-4 text-base font-bold text-white rounded-md outline-none bg-tertiary"
+                className="min-w-[206px] p-4 text-base font-bold text-white rounded-md outline-none bg-tertiary"
               >
                 Submit
               </button>

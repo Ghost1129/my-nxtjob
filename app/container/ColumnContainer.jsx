@@ -4,7 +4,11 @@ import React from "react";
 const Col = dynamic(() => import("../container/Col"), { ssr: false });
 import { DragDropContext } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
-import { updateWholeState, selectCards } from "../utils/slices/cardSlice";
+import {
+  updateWholeState,
+  selectCards,
+  addColumn,
+} from "../utils/slices/cardSlice";
 import { useDispatch } from "react-redux";
 
 const ColumnContainer = () => {
@@ -47,7 +51,7 @@ const ColumnContainer = () => {
           columnOrder: newState.columnOrder,
         })
       );
-      console.log(state);
+
       return;
     } else {
       // Moving from one column to another
@@ -83,6 +87,16 @@ const ColumnContainer = () => {
     }
   };
 
+  const AddColumn = () => {
+    let columnId = `column-${state.columnOrder.length + 1}`;
+    dispatch(
+      addColumn({
+        id: columnId,
+        title: columnId,
+      })
+    );
+  };
+
   return (
     <div className="flex h-full gap-3 overflow-x-scroll overflow-y-hidden">
       <DragDropContext onDragEnd={onDragEnd}>
@@ -91,6 +105,12 @@ const ColumnContainer = () => {
           const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
           return <Col key={column.id} column={column} tasks={tasks} />;
         })}
+        <button
+          onClick={() => AddColumn()}
+          className="mt-5 outline-none p-5 bg-primary h-fit text-center text-white rounded-md min-w-[320px]"
+        >
+          Create New Column
+        </button>
       </DragDropContext>
     </div>
   );

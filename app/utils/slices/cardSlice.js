@@ -40,8 +40,8 @@ const cardSlice = createSlice({
   initialState,
   reducers: {
     addCard: (state, action) => {
-      const { id, content, column } = action.payload;
-      state.tasks[id] = { id, content };
+      const { id, url, title, company, column } = action.payload;
+      state.tasks[id] = { id, url, title, company };
       state.columns[column].taskIds.push(id);
     },
     deleteCard: (state, action) => {
@@ -58,6 +58,7 @@ const cardSlice = createSlice({
       state.columns[id] = { id, title, taskIds: [] };
       state.columnOrder.push(id);
     },
+
     updateWholeState: (state, action) => {
       const { tasks, columns, columnOrder } = action.payload;
       state.tasks = tasks;
