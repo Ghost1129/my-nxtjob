@@ -16,7 +16,11 @@ const JobDescription = () => {
   const [editdata, setEditData] = useState(data);
   const [edit, setEdit] = useState(false);
   const handleSave = () => {
-    dispatch(updateEditor(editdata));
+    dispatch(
+      updateEditor({
+        data: editdata,
+      })
+    );
     setEdit(!edit);
   };
   const handleCancel = () => {
@@ -62,7 +66,11 @@ const JobDescription = () => {
           />
         )}
       </div>
-      <div className="w-full h-full p-5 mb-1 overflow-x-visible overflow-y-scroll bg-white rounded-md">
+      <div
+        className={`w-full h-full p-5 mb-1 overflow-x-visible overflow-y-scroll ${
+          edit ? "bg-white" : ""
+        } rounded-md`}
+      >
         {edit ? (
           <QuillEditor data={editdata} setData={setEditData} />
         ) : (
