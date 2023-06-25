@@ -1,10 +1,14 @@
 import { Cross1Icon } from "@radix-ui/react-icons";
 import * as Popover from "@radix-ui/react-popover";
 import Image from "next/image";
-import { BsTrashFill } from "react-icons/bs";
+import { BsCheck, BsTrashFill } from "react-icons/bs";
 import Menuicon from "../../public/assets/dndcard/menu.svg";
 import Popplayicon from "../../public/assets/dndcard/popplay.svg";
-
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import * as Checkbox from "@radix-ui/react-checkbox";
+import { MdEdit } from "react-icons/md";
+import { IoIosCopy } from "react-icons/io";
+import LinkedinLogo from "../../public/assets/linkedin.svg";
 // Delete Popover
 export const DeletePop = () => {
   return (
@@ -133,5 +137,52 @@ export const Resume1Pop = ({ children }) => {
         </div>
       </Popover.Content>
     </Popover.Root>
+  );
+};
+
+export const MoreOptions = ({ children }) => {
+  return (
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger>{children}</DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content
+          hideWhenDetached={true}
+          sideOffset={8}
+          className="w-[213px] z-[100] overflow-y-scroll text-[#212121] py-[17px] px-[20px] flex flex-col gap-[10px] text-sm shadow-md rounded-md cursor-pointer overflow-hidden bg-white "
+        >
+          <div className="flex items-center gap-[10px]">
+            <Checkbox.Root className="w-4 h-4 border rounded-full data-[state=checked]:bg-green-100 ">
+              <Checkbox.Indicator className="">
+                <BsCheck className="text-[#212121] " />
+              </Checkbox.Indicator>
+            </Checkbox.Root>
+            <label className="text-[#212121] text-sm">Like 1 post</label>
+          </div>
+          <div className="flex items-center gap-[10px]">
+            <Checkbox.Root className="w-4 h-4 border rounded-full data-[state=checked]:bg-green-100 ">
+              <Checkbox.Indicator>
+                <BsCheck className="text-[#212121]" />
+              </Checkbox.Indicator>
+            </Checkbox.Root>
+            <label className="text-[#212121] text-sm">Send a message</label>
+          </div>
+          <div className="mx-[10px]">
+            <span className="text-xs mb-[10px] font-semibold">
+              To a ux designer who works at Google
+            </span>
+            <p className="text-[10px]  text-[#5A5A5A]">
+              {`Hi [Name],`}
+              <br />
+              {`I'm Gopal Sapara and I am currently working as a UX designer. Being passionate about user experience, I am interested in exploring the opportunity of becoming part of Google's UX team. Could you provide me with some insights on how to initiate this process? Thank you for your time!`}
+            </p>
+          </div>
+          <div className="flex items-center">
+            <MdEdit className="text-[#9E9E9E] w-4 " />
+            <IoIosCopy className="text-[#9E9E9E] w-4 " />
+            <Image className="ml-auto" src={LinkedinLogo} alt="linkedin" />
+          </div>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   );
 };

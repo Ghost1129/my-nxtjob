@@ -43,7 +43,7 @@ const JobContainer = () => {
   return (
     <Dialog.Content className="fixed z-[20] top-1/2 left-1/2 flex pb-10 flex-col gap-5 -translate-x-1/2 -translate-y-1/2 outline-none w-[1200px] max-h-[760px] overflow-hidden rounded-md bg-white">
       <Dialog.Close>
-        <Cross2Icon className="absolute w-5 h-5 cursor-pointer top-6 right-6" />
+        <Cross2Icon className="absolute w-5 h-5 cursor-pointer top-4 right-4" />
       </Dialog.Close>
       <ContainerTop />
       <div className=" border-y">
@@ -91,7 +91,7 @@ const JobContainer = () => {
 export default JobContainer;
 
 const ContainerTop = () => (
-  <div className="mx-[40px] mt-[40px] ">
+  <div className="mx-[40px] mt-[20px] ">
     <div className="flex gap-[10px] ">
       <Image alt="jobicon" src={JobIcon} />
       <div className="flex flex-col gap-[6px]">

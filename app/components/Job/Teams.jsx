@@ -13,6 +13,8 @@ import OptionLogo from "../../../public/assets/Collapsible/option.svg";
 import * as Popover from "@radix-ui/react-popover";
 import { BsTrashFill } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
+import { MoreOptions } from "../PopOvers";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 const Teams = () => {
   const variants = {
@@ -68,11 +70,13 @@ const Teams = () => {
                 <span>Name of Company</span>
                 <span>17 June, 2023</span>
                 <span className="flex items-center gap-[10px]">
-                  <Image
-                    src={YellowLogo}
-                    className="cursor-pointer"
-                    alt="alert"
-                  />
+                  <MoreOptions>
+                    <Image
+                      src={YellowLogo}
+                      className="cursor-pointer"
+                      alt="alert"
+                    />
+                  </MoreOptions>
                   <Image
                     src={MessageLogo}
                     className="cursor-pointer"
@@ -98,11 +102,13 @@ const Teams = () => {
                 <span>Name of Company</span>
                 <span>17 June, 2023</span>
                 <span className="flex items-center gap-[10px]">
-                  <Image
-                    src={GreenLogo}
-                    className="cursor-pointer"
-                    alt="alert"
-                  />
+                  <MoreOptions>
+                    <Image
+                      src={GreenLogo}
+                      className="cursor-pointer"
+                      alt="alert"
+                    />
+                  </MoreOptions>
                   <Image
                     src={MessageLogo}
                     className="cursor-pointer"
@@ -138,7 +144,13 @@ const Teams = () => {
                 <span>Name of Company</span>
                 <span>17 June, 2023</span>
                 <span className="flex items-center gap-[10px]">
-                  <Image src={RedLogo} className="cursor-pointer" alt="alert" />
+                  <MoreOptions>
+                    <Image
+                      src={RedLogo}
+                      className="cursor-pointer"
+                      alt="alert"
+                    />
+                  </MoreOptions>
                   <Image
                     src={MessageLogo}
                     className="cursor-pointer"
@@ -164,11 +176,13 @@ const Teams = () => {
                 <span>Name of Company</span>
                 <span>17 June, 2023</span>
                 <span className="flex items-center gap-[10px]">
-                  <Image
-                    src={YellowLogo}
-                    className="cursor-pointer"
-                    alt="alert"
-                  />
+                  <MoreOptions>
+                    <Image
+                      src={YellowLogo}
+                      className="cursor-pointer"
+                      alt="alert"
+                    />
+                  </MoreOptions>
                   <Image
                     src={MessageLogo}
                     className="cursor-pointer"
@@ -204,7 +218,13 @@ const Teams = () => {
                 <span>Name of Company</span>
                 <span>17 June, 2023</span>
                 <span className="flex items-center gap-[10px]">
-                  <Image src={RedLogo} className="cursor-pointer" alt="alert" />
+                  <MoreOptions>
+                    <Image
+                      src={RedLogo}
+                      className="cursor-pointer"
+                      alt="alert"
+                    />
+                  </MoreOptions>
                   <Image
                     src={MessageLogo}
                     className="cursor-pointer"
@@ -272,23 +292,25 @@ const CollapsibleContainer = ({ data, children }) => {
 
 const DeletePop = () => {
   return (
-    <Popover.Root className="z-10">
-      <Popover.Trigger>
+    <DropdownMenu.Root className="">
+      <DropdownMenu.Trigger>
         <Image
           src={OptionLogo}
           className="relative cursor-pointer"
           alt="delete"
         />
-      </Popover.Trigger>
-      <Popover.Content
-        side="top"
-        className="w-[160px] px-5 py-3 shadow-md rounded-md cursor-pointer bg-white "
-      >
-        <div className="bg-white flex gap-[10px] ">
-          <BsTrashFill className="text-[#F44336] text-[20px] cursor-pointer" />
-          <span className="text-[#212121] text-sm">Delete</span>
-        </div>
-      </Popover.Content>
-    </Popover.Root>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content
+          sideOffset={8}
+          className="w-[160px] z-[100] px-5 py-3 shadow-md rounded-md cursor-pointer bg-white "
+        >
+          <div className="bg-white flex gap-[10px]">
+            <BsTrashFill className="text-[#F44336] text-[20px] cursor-pointer" />
+            <span className="text-[#212121] text-sm">Delete</span>
+          </div>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   );
 };
